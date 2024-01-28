@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container, CreatePost, HeaderPost, ImgProfile, ImgProject, NewPost } from "./feedP.styled";
 import api from "../../../utils/api";
-import { Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, ListItemButton,
-  Rating, TextareaAutosize, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, ListItemButton,
+  Rating, TextareaAutosize, useMediaQuery, useTheme
+} from "@mui/material";
 import { useSnackbar } from "notistack";
 import { Link } from "react-router-dom";
 
@@ -12,7 +14,7 @@ export default function FeedP() {
   const [dialog, setDialog] = useState(false);
   const theme = useTheme();
   const { enqueueSnackbar } = useSnackbar();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [projects, setProjects] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [nameProject, setNameProject] = useState(null);
@@ -78,19 +80,19 @@ export default function FeedP() {
     }
 
     try {
-      const response = await api.post('posts/create', newData, {
+      const res = await api.post('posts/create', newData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`
         },
       });
 
-      enqueueSnackbar(response.data.message, { variant: 'success' });
+      enqueueSnackbar(res.data.message, { variant: 'success' });
     } catch (error) {
-      enqueueSnackbar(error.response.data.message, { variant: 'error' });
+      enqueueSnackbar(error.res.data.message, { variant: 'error' });
     }
   }
 
-  function cancelPost(){
+  function cancelPost() {
     setNameProject(null);
     setSelectedProjectId(null);
     formData.subtitle = '';
@@ -101,27 +103,36 @@ export default function FeedP() {
     <Container>
       <CreatePost>
         <form onSubmit={handleSubmit}>
-          <Button onClick={handleClickOpen}
-            variant="contained"
-            size="small"
-          >Add projeto</Button>
-          <p>{nameProject}</p>
+          <div style={{ width: '100%', display: 'flex' }}>
+            <Button sx={{ width: '30%' }} onClick={handleClickOpen}
+              variant="contained"
+              size="small"
+            >Add projeto</Button>
+            <h4>
+              {!nameProject ? (
+                <span>X</span>
+              ) : (
+                <span>{`${nameProject} `}<h5>V</h5></span>
+              )}
+            </h4>
+
+          </div>
           <TextareaAutosize style={{ marginBottom: '10px', marginTop: '10px', minHeight: '40px', maxHeight: '60px' }}
             placeholder="Digite uma legenda"
             value={formData.subtitle}
             onChange={(e) => handleTextChange(e, 'subtitle')}
           />
-          <Button
-            variant="contained"
-            type="submit"
-            color="success"
-            size="small"
-          >Postar</Button>
-          <Button onClick={() => cancelPost()} sx={{marginTop: '5px'}}
-            variant="contained"
-            size="small"
-            color="error"
-          >cancelar</Button>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+            <Button sx={{ width: '30%' }}
+              variant="contained"
+              type="submit"
+              color="success"
+            >Postar</Button>
+            <Button onClick={() => cancelPost()} sx={{ width: '30%' }}
+              variant="contained"
+              color="error"
+            >cancelar</Button>
+          </div>
         </form>
       </CreatePost>
 
@@ -129,8 +140,8 @@ export default function FeedP() {
         <NewPost key={post._id}>
           <HeaderPost >
             <ImgProfile src={`${process.env.REACT_APP_API_LOCAL}/img/users/${post.user.image}`} alt={post.user.name} />
-            <p><Link to={`/userdetails/${post.user._id}`}>{`${post.user.name} ${post.user.surname}`}</Link></p>
-            <Link to={`/projectdetails/${post.project._id}`}>{post.project.name}</Link>
+            <p style={{}}><Link style={{ textDecoration: 'none' }} to={`/userdetails/${post.user._id}`}>{`${post.user.name} ${post.user.surname}`}</Link></p>
+            <h4> <Link style={{ textDecoration: 'none', textTransform: 'uppercase' }} to={`/projectdetails/${post.project._id}`}>{post.project.name}</Link></h4>
             <h6>{post.date}</h6>
           </HeaderPost>
           <Divider />

@@ -22,7 +22,18 @@ export const HeaderPost = styled.div`
     width: 100%;
 
     h6 {
-        right: 0;
+        text-decoration: none;
+        font-weight: 500;
+        justify-content: flex-end;
+    }
+    h4 {
+        margin: 0;
+        justify-content: center;
+    }
+
+    p {
+        text-decoration: none;
+        font-weight: 500;   
     }
 `;
 
@@ -55,6 +66,18 @@ export const CreatePost = styled.div`
         display: flex;
         flex-direction: column;
         text-align: center;
+    }
+
+    h4 {
+        margin: auto;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #333333;
+        padding: 0.5em;
+        background-color: #cccccc;
+        border-radius: 4px;
+        margin-right: -1px;
+        width: 28%;
     }
 
     form p{

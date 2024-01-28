@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -6,6 +6,8 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: rgb(0,0,0);
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
 `;
 
 export const Form = styled.form`
@@ -16,10 +18,11 @@ export const Form = styled.form`
     padding: 20px;
     border-radius: 5px;
     box-shadow: -3px 3px 8px -2px #000000;
-    background-color: #333333;
+    background: rgb(0,0,0);
+    background: linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
 
     p {
-        color: #ffffff;
+        color: #000000;
     }
 
     h1 {
@@ -46,4 +49,9 @@ export const Span = styled.span`
 
 export const Logodm = styled.img`
     width: 350px;
+`;
+
+export const ButtonStyled = styled(Button)`
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
 `;

@@ -1,13 +1,12 @@
 import React from "react";
+import { Container } from "./news.styled";
 
 export default function News() {
   return(
     <>
-      <div style={{backgroundColor: 'gray'}}> 
-      <br />
-      <h1>News</h1>
+      <Container>
 
-      </div>
+      </Container>
     </>
   )
 }

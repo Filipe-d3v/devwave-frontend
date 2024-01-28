@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../context/UserContext";
-import { Button } from '@mui/material';
-import { Container, Form, Span, TextFieldStyled, Logodm } from "./login.styled";
+import { Container, Form, Span, TextFieldStyled, Logodm, ButtonStyled } from "./login.styled";
 import { FacebookRounded, Google } from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";
 import Logo from '../../../assets/dmcuter.png'
@@ -21,7 +20,8 @@ export default function Login() {
   }
 
   const customText = {
-    color: '#ffffff'
+    color: '#000000',
+    fontWeight: 'bold'
   }
 
   const customLabel = {
@@ -63,13 +63,12 @@ export default function Login() {
            fontSize: '13px',
         }}>
           Esqueceu sua senha? <Span>Clique aqui</Span> </p>
-        <Button
+        <ButtonStyled
           type="submit"
           variant="contained"
-          color="success"
         >
           Entrar
-        </Button>
+        </ButtonStyled>
         <p onClick={() => navigate("/register")}
         >Ainda não tem conta? <Span>Clique aqui</Span> </p>
       </Form>

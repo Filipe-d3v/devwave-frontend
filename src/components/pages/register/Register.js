@@ -1,6 +1,5 @@
-import { Button } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { Container, Form, TextFieldStyled, Logodm } from "./register.styled";
+import { Container, Form, TextFieldStyled, Logodm, ButtonStyled } from "./register.styled";
 import {Context} from '../../../context/UserContext';
 import Logo from '../../../assets/dmcuter.png'
 import { Link } from "react-router-dom";
@@ -24,11 +23,19 @@ export default function Register() {
         }, 3000);
     }
 
+    const customText = {
+        color: '#ffffff'
+      }
+    
+      const customLabel = {
+        color: '#ffffff'
+      }
+
     return(
         <Container>
             <Form onSubmit={handleSubmit}>
             <Logodm src={Logo} alt="DevMasters" />
-            <h1>SignUP</h1>
+            <h1>CADASTRO</h1>
             <TextFieldStyled sx={{marginBottom: '5px'}}
                 type="text"
                 name="name"
@@ -37,6 +44,8 @@ export default function Register() {
                 placeholder="Digite o nome"
                 variant="outlined"
                 onChange={handleChange}
+                InputProps={{style: customText}}
+                InputLabelProps={{style: customLabel}}
             />
             <TextFieldStyled sx={{marginBottom: '5px'}}
                 type="text"
@@ -46,6 +55,8 @@ export default function Register() {
                 placeholder="Digite o sobrenome"
                 variant="outlined"
                 onChange={handleChange}
+                InputProps={{style: customText}}
+                InputLabelProps={{style: customLabel}}
             />
             <TextFieldStyled sx={{marginBottom: '5px'}}
                 type="email"
@@ -55,6 +66,8 @@ export default function Register() {
                 placeholder="Digite o e-mail"
                 variant="outlined"
                 onChange={handleChange}
+                InputProps={{style: customText}}
+                InputLabelProps={{style: customLabel}}
             />
             <TextFieldStyled sx={{marginBottom: '5px'}}
                 type="tel"
@@ -64,6 +77,8 @@ export default function Register() {
                 placeholder="Digite o telefone"
                 variant="outlined"
                 onChange={handleChange}
+                InputProps={{style: customText}}
+                InputLabelProps={{style: customLabel}}
             />
             
             <TextFieldStyled sx={{marginBottom: '5px'}}
@@ -74,6 +89,8 @@ export default function Register() {
                 placeholder="Digite a senha"
                 variant="outlined"
                 onChange={handleChange}
+                InputProps={{style: customText}}
+                InputLabelProps={{style: customLabel}}
             />
             <TextFieldStyled sx={{marginBottom: '5px'}}
                 type="password"
@@ -83,14 +100,14 @@ export default function Register() {
                 placeholder="Confirme a senha"
                 variant="outlined"
                 onChange={handleChange}
+                InputProps={{style: customText}}
+                InputLabelProps={{style: customLabel}}
             />
-            <Button id="bt_enter"
+            <ButtonStyled id="bt_enter"
             type="submit"
             variant="contained"
-            color="success"
             fullWidth={true}
-            dis
-            >CRIAR CONTA</Button>
+            >CRIAR CONTA</ButtonStyled>
 
             <Link to='/login'>
             <p>Já tem uma conta? <span

@@ -23,3 +23,16 @@ export const ImgAndDesc = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+export const Skills = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+`;

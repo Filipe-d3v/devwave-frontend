@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -6,7 +6,8 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    background: rgb(0,0,0);
+    background: linear-gradient(45deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
 `;
 
 export const Form = styled.form`
@@ -14,19 +15,36 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: solid 1px #d3d3d3;
     margin-top: 100px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: -3px 3px 8px -2px #000000;
-    background-color: #333333;
+    background: rgb(0,0,0);
+    background: linear-gradient(225deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
+
+    h1 {
+        color: #ffffff;
+    }
 `;
 
 export const TextFieldStyled = styled(TextField)`
     margin-bottom: 5px;
     width: 400px;
+    background-color: #787878;
 `;
 
 export const Logodm = styled.img`
     width: 350px;
+`;
+
+export const ButtonStyled = styled(Button)`
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
+    transition: 0.8s;
+
+    &:hover {
+    background: rgb(0,0,0);
+    background: linear-gradient(280deg, rgba(0,0,0,1) 0%, rgba(116,116,116,1) 50%, rgba(236,236,236,1) 100%);
+    transition: 0.8s;
+    }
 `;
