@@ -12,12 +12,17 @@ import Forum from './components/pages/forum/Forum';
 import ProjectDetails from './components/pages/project/ProjectDetails';
 import MyProject from './components/pages/project/MyProject';
 import UserDetails from './components/pages/user/UserDetails';
+import { ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme();
 
 function App() {
   return (
-    <SnackbarProvider>
-      <Router>
-        <UserProvider>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider>
+        <Router>
+          <UserProvider>
             <Routes>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
@@ -31,10 +36,11 @@ function App() {
                 <Route path='/userdetails/:id' element={<UserDetails />} />
               </Route>
             </Routes>
-          <Footer />
-        </UserProvider>
-      </Router>
-    </SnackbarProvider>
+            <Footer />
+          </UserProvider>
+        </Router>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }
 

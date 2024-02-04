@@ -13,9 +13,8 @@ export const Container = styled.div`
   }
 
   img {
-    max-width: 600px;
+    max-width: 700px;
     display: flex;
-    aspect-ratio: 16 / 9;
   }
 `;
 

@@ -10,8 +10,8 @@ import api from "../../../utils/api";
 import { useSnackbar } from "notistack";
 import CheckIcon from '@mui/icons-material/Check';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import { ActionContent, CardNewProject, Container, ImageContent, ListSkills, ProjectContent, ProjectsCard } from "./myprojects.styled";
-import { Add, Delete, Edit, PhotoCamera, SentimentVeryDissatisfied } from '@mui/icons-material';
+import { ActionContent, CardNewProject, Container, ImageContent, ListSkills, ProjectContent, ProjectsCard, ButtonStyled } from "./myprojects.styled";
+import { Add, Check, Close, Delete, Edit, PhotoCamera, SentimentVeryDissatisfied } from '@mui/icons-material';
 import { pdfjs } from 'react-pdf';
 import Vazio from '../../../assets/vazio.png'
 
@@ -171,17 +171,16 @@ export default function MyProject() {
 
   return (
     <Container>
-      <CardNewProject>
-        <h3>PROJETO</h3>
-        <img src={Vazio} alt="vazio" />
-        <Button onClick={() => handleClickOpen()}
-        variant="contained"
-        size="large"
-
-        ><Add /></Button>
-      </CardNewProject>
 
       <ProjectsCard>
+        
+      <CardNewProject>
+        <h3>NOVO PROJETO</h3>
+        <img src={Vazio} alt="vazio" />
+        <ButtonStyled onClick={() => handleClickOpen()}
+        ><Add sx={{color: '#ffffff'}}/></ButtonStyled>
+      </CardNewProject>
+
         {projects.length > 0 ? (
           projects.map((project) => (
             <ProjectContent key={project._id}>
@@ -333,19 +332,26 @@ export default function MyProject() {
               */}
 
               <br />
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
               <Button
                 variant="contained"
                 type="submit"
                 color="success"
+                size="large"
+                sx={{margin: 0, borderRadius: '50%'}}
               >
-                Criar</Button>
+                <Check />
+                </Button>
 
               <Button onClick={handleClose} autoFocus
                 variant="contained"
                 color="error"
+                size="large"
+                sx={{margin: 0, borderRadius: '50%'}}
               >
-                Cancelar
+                <Close />
               </Button>
+              </div>
 
             </form>
 

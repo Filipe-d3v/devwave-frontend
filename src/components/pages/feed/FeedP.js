@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Container, CreatePost, HeaderPost, ImgProfile, ImgProject, NewPost } from "./feedP.styled";
+import {
+  Container, CreatePost, HeaderPost, ImgProfile, ImgProject, NewPost, PostInfo,
+  Button
+} from "./feedP.styled";
 import api from "../../../utils/api";
 import {
-  Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, ListItemButton,
+  Dialog, DialogContent, DialogContentText, DialogTitle, Divider, ListItemButton,
   Rating, TextareaAutosize, useMediaQuery, useTheme
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { Link } from "react-router-dom";
+import { Add, Check, CheckRounded, Close, SentimentDissatisfied } from "@mui/icons-material";
 
 export default function FeedP() {
   const [posts, setPosts] = useState([]);
@@ -45,6 +49,27 @@ export default function FeedP() {
         setProjects(response.data.projects)
       })
   }, [token])
+
+  //let idProject = ''
+
+  /*useEffect(() => {
+    const fetchProjectSkills = async () => {
+      try{
+    const response = await api.get(`/projects/getbyid/${idProject}`, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
+    })
+    setProjectSkills(response.data.projectSkills)
+  }catch(error) {
+    console.error("Error fetching project skills:", error);
+  }
+  } 
+  if (idProject && token) {
+    fetchProjectSkills();
+  }
+},  [idProject, token])*/
+
 
   const handleClose = () => {
     setSelectedProjectId(null);
@@ -88,7 +113,8 @@ export default function FeedP() {
 
       enqueueSnackbar(res.data.message, { variant: 'success' });
     } catch (error) {
-      enqueueSnackbar(error.res.data.message, { variant: 'error' });
+      const errorMessage = error.response?.data?.message || 'Erro desconhecido ao criar post';
+  enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   }
 
@@ -104,15 +130,14 @@ export default function FeedP() {
       <CreatePost>
         <form onSubmit={handleSubmit}>
           <div style={{ width: '100%', display: 'flex' }}>
-            <Button sx={{ width: '30%' }} onClick={handleClickOpen}
-              variant="contained"
-              size="small"
-            >Add projeto</Button>
+            <Button onClick={handleClickOpen}
+            style={{backgroundColor: '#084DF2'}}
+            ><Add sx={{ color: '#ffffff' }} /></Button>
             <h4>
               {!nameProject ? (
-                <span>X</span>
+                <span><SentimentDissatisfied /></span>
               ) : (
-                <span>{`${nameProject} `}<h5>V</h5></span>
+                <span>{`${nameProject} `} <Check /></span>
               )}
             </h4>
 
@@ -123,36 +148,38 @@ export default function FeedP() {
             onChange={(e) => handleTextChange(e, 'subtitle')}
           />
           <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-            <Button sx={{ width: '30%' }}
-              variant="contained"
-              type="submit"
-              color="success"
-            >Postar</Button>
-            <Button onClick={() => cancelPost()} sx={{ width: '30%' }}
-              variant="contained"
-              color="error"
-            >cancelar</Button>
+            <Button 
+            style={{backgroundColor: '#04AA6D'}}
+            type="submit"
+            ><CheckRounded sx={{ color: '#ffffff' }} /></Button>
+            <Button onClick={() => cancelPost()}
+            style={{backgroundColor: '#E23934'}}
+            ><Close sx={{ color: '#ffffff' }} /></Button>
           </div>
         </form>
       </CreatePost>
 
-      {posts.map((post) => (
+      {posts?.map((post) => (
+        //const projectDetails = await fetchProjectSkills(post.project._id);
+
         <NewPost key={post._id}>
-          <HeaderPost >
+          <HeaderPost>
             <ImgProfile src={`${process.env.REACT_APP_API_LOCAL}/img/users/${post.user.image}`} alt={post.user.name} />
-            <p style={{}}><Link style={{ textDecoration: 'none' }} to={`/userdetails/${post.user._id}`}>{`${post.user.name} ${post.user.surname}`}</Link></p>
-            <h4> <Link style={{ textDecoration: 'none', textTransform: 'uppercase' }} to={`/projectdetails/${post.project._id}`}>{post.project.name}</Link></h4>
-            <h6>{post.date}</h6>
+            <PostInfo>
+              <div style={{marginLeft: '10px'}}>
+              <p><Link style={{ textDecoration: 'none', color: '#111111' }} to={`/userdetails/${post.user._id}`}>{`${post.user.name} ${post.user.surname}`}</Link></p>
+              <h6>{post.date}</h6>
+              </div>
+              <Link style={{ textDecoration: 'none', textTransform: 'uppercase', }} to={`/projectdetails/${post.project._id}`}><img src={`${process.env.REACT_APP_API_LOCAL}/img/projects/${post.project.image}`} alt={post.project.image}/></Link>
+            </PostInfo>
           </HeaderPost>
           <Divider />
-          <div>
-            <h3>{post.subtitle}</h3>
-          </div>
           <Divider />
           <ImgProject src={`${process.env.REACT_APP_API_LOCAL}/img/projects/${post.project.image}`} alt={post.project.name} />
           <Divider />
           <Rating name="aprovation-level" precision={0.5} defaultValue={0} size="large" max={10} />
         </NewPost>
+
       ))}
 
       <Dialog
@@ -170,6 +197,9 @@ export default function FeedP() {
                 </ListItemButton>
               </div>
             ))}
+            <br />
+
+
           </DialogContentText>
         </DialogContent>
       </Dialog>

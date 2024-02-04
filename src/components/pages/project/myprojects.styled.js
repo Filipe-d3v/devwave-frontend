@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  text-align: center;
   display: flex;
   padding-top: 50px;
+  padding-left:20px;
+  padding-right: 20px;
   flex-wrap: wrap;
 `;
 
 export const ProjectContent = styled.div`
   display: flex;
-  border-bottom: solid 2px #d2d2d2;
+  width: 15%;
   padding: 10px;
   flex-direction: column;
+  background-color: #cccccc;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 export const ImageContent = styled.div`
@@ -57,12 +61,10 @@ export const ListSkills = styled.div`
 `;
 
 export const ProjectsCard = styled.div`
-  border: solid 1px #d4d4d4;
   display: flex;
-  flex-direction: column;
-  max-width: 17%;
   align-items: center;
   margin-left: 10px ;
+  width: 100%;
   
   h1 {
     opacity: 30%;
@@ -74,17 +76,41 @@ export const ProjectsCard = styled.div`
 export const CardNewProject = styled.div`
   display: flex;
   flex-direction: column;
-  width: 17%;
-  border: solid 1px #c4c4c4;
+  width: 15%;
+  border: solid 1px #222222;
   padding: 10px;
+  text-align: center;
+  background-color: #cccccc;
+  align-items: center;
+  margin-right: 10px;
 
   img {
-    height: 75px;
+    height: 100px;
     width: auto;
   }
 
   h3 {
     margin: 0;
     padding: 0;
+    color: #222222;
   }
+
+  button {
+    margin-top: 4px;
+    background-color: #04aa6d;
+    border: none;
+    border-radius: 4px;
+    width: 90%;
+    transition: 0.2s;
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.54);
+
+    &:hover {
+      scale: 1.1;
+      border: none;
+    }
+  }
+`;
+
+export const ButtonStyled = styled.button`
+height: 2.5em;
 `;

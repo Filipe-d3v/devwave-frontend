@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Container, CardQuestion, DialogStyled } from './forum.styled';
+import { Container, CardQuestion, DialogStyled, Button, CodeCard } from './forum.styled';
 import api from '../../../utils/api';
 import CodeDisplay from '../../../utils/CodeDisplay';
-import { Button, DialogContent, DialogContentText, DialogTitle, TextField, TextareaAutosize } from '@mui/material';
+import { DialogContent, DialogContentText, DialogTitle, TextField, TextareaAutosize } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { useSnackbar } from "notistack";
@@ -82,12 +82,14 @@ export default function Forum() {
           <img style={{ width: '80px' }} src={`${process.env.REACT_APP_API_LOCAL}/img/users/${question.owner.image}`} alt={question.owner.name} />
           {`${question.owner.name} ${question.owner.surname}`}<br />
           {question.text}<br />
+          <CodeCard>
           <CodeDisplay code={question.code} language='javascript' />
-          <button
+          </CodeCard>
+          <Button
             onClick={() => handleClickOpen(question._id)}
           >
             comentar
-          </button>
+          </Button>
         </CardQuestion>
       ))}
       <DialogStyled

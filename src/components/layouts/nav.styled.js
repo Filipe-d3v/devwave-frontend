@@ -11,7 +11,7 @@ export const Navi = styled.nav`
     justify-content: center;
     display: flex;
     flex-direction: row;
-    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.73);
+    box-shadow: 0px 2px 6px 0px #000000;
 `;
 
 export const H1 = styled.h1`

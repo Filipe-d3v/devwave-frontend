@@ -9,7 +9,7 @@ export default function ProjectDetails() {
   const [token] = useState(localStorage.getItem('token') || '');
 
   useEffect(() => {
-    api.get(`/projects/getbyid/${id}`, {
+   api.get(`/projects/getbyid/${id}`, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`
       }
@@ -20,10 +20,7 @@ export default function ProjectDetails() {
   return (
     <Container>
       <h2>{project.name}</h2>
-      <ImgAndDesc>
-        <img src={`${process.env.REACT_APP_API_LOCAL}/img/projects/${project.image}`} alt={project.name} />
-        
-      </ImgAndDesc>
+      <img src={`${process.env.REACT_APP_API_LOCAL}/img/projects/${project.image}`} alt={project.name} />
       <Skills>
         {project.skills?.map((skill, index) => (
           <div style={{width: '100%'}} key={index}>
